@@ -1,69 +1,72 @@
-# FODI
+Fast OneDrive Index / FODI — A fast OneDrive listing program that requires no server.
 
-Fast OneDrive Index / FODI，无需服务器的 OneDrive 快速列表程序
+🔍 Preview
+DEMO
 
-#### 预览
+✨ Features
+Specify display paths
 
-- [DEMO](https://logi.im/fodi.html)
+Password protection for specific folders
 
-#### 功能
+Free deployment with no server required
 
-- 指定展示路径
-- 特定文件夹加密
-- 无需服务器免费部署
-- 基本文本、图片、音视频和 Office 三件套预览
+Preview support for basic text, images, audio, video, and Office documents
 
-#### 缺点
+⚠️ Limitations
+Simple features, minimalistic UI
 
-- 功能简单，界面简陋
-- 不支持巨硬家的 IE 和 UWP 版 EDGE 浏览器
+Not compatible with Internet Explorer and UWP version of Microsoft Edge
 
-#### 更新
+📌 Updates
+2025.02.12
+Partial WebDAV functionality added (list, upload, download, copy, move)
 
-##### 2025.02.12
+2024.09.15
+Upload support added (create a .upload file in the upload directory)
 
-- 实现部分 Webdav 功能（列表，上传，下载，复制，移动）
+2019.12.23
+Improved speed
 
-##### 2024.09.15
+Added Cloudflare Workers backend
 
-- 支持上传（在上传目录创建 `.upload` 文件）
+2019.12.07
+Improved speed
 
-##### 2019.12.23
+Added Python 3.6 backend
 
-- 进一步提升速度
-- 增加 Cloudflare Workers 后端
+🚀 Installation
+Deploy FODI backend on Cloudflare
 
-##### 2019.12.07
+FODI Deployment Helper
 
-- 进一步提升速度
-- 增加 Python3.6 后端
+📖 Notes
+WEBDAV
+Account & Password Setup:
+Set secrets in Environment Variables, with the variable name WEBDAV, like this:
 
-#### 安装
-
-- [在 Cloudflare 部署 FODI 后端](https://logi.im/back-end/fodi-on-cloudflare.html)
-- [FODI Deployment Helper](https://logi.im/fodi/get-code/)
-
-#### 说明
-
-##### WEBDAV
-
-- 账号密码设置: 在 **变量和机密** 设置 **秘钥**，变量名为 `WEBDAV`, 形如
-
-```json
+json
+Copy
+Edit
 {
   "user1": "password",
   "user2": "password"
 }
-```
+File upload limits:
 
-- 文件上传限制: FreePlan 100MB, BusinessPlan 200MB, EnterprisePlan 500MB
+Free Plan: 100MB
 
-##### 预览
+Business Plan: 200MB
 
-- pdf: 如果需要使用本地 pdf 预览，请前往 [PDF.js](https://mozilla.github.io/pdf.js/) 下载文件并解压命名为 `pdfjs` ，注释掉 `viewer.mjs` 的 `fileOrigin !== viewerOrigin` 条件，并修改 `//mozilla.github.io/pdf.js/web/viewer.html?file=`
-- markdown: 网页在 `Optional Markdown extensions` 可选择是否启用 github alert 与 katex 格式
+Enterprise Plan: 500MB
 
-##### 下载
+Preview Support
+PDF: For local PDF previews, download and extract PDF.js, rename the folder to pdfjs.
+Comment out the condition fileOrigin !== viewerOrigin in viewer.mjs, and change the URL prefix //mozilla.github.io/pdf.js/web/viewer.html?file=.
 
-- `return downloadFile(file, requestUrl.searchParams.get('format'), true);` 可加上第三个参数让 worker 代理
-- 访问 `https://example.com/a.html?format=` 可添加转换的目标格式，[支持转换格式](https://learn.microsoft.com/zh-cn/onedrive/developer/rest-api/api/driveitem_get_content_format?view=odsp-graph-online#format-options)
+Markdown: Enable GitHub-style alerts and KaTeX formatting through the "Optional Markdown extensions" settings in the UI.
+
+Download
+Use return downloadFile(file, requestUrl.searchParams.get('format'), true); — the third argument allows the Worker to act as a proxy.
+
+Access via https://example.com/a.html?format= to specify the output format.
+Supported conversion formats
